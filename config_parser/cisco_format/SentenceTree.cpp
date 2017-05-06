@@ -52,11 +52,10 @@ interface manage
 
 void ParseConfigToSentenceTree(std::istream & in, SentenceTree & tree)
 {
-	std::stack<std::string> prefixStack;
-	std::stack<SentenceTree * > treeStack;
+	typedef std::pair<std::string, SentenceTree*> ParseStackItem;
+	std::stack<ParseStackItem> stack;
 
-	prefixStack.push("");
-	treeStack.push(&tree);
+	stack.push(ParseStackItem("", &tree));
 
 	while (!in.eof())
 	{
@@ -76,24 +75,21 @@ void ParseConfigToSentenceTree(std::istream & in, SentenceTree & tree)
 		//because root prefix is empty string,his child at least has one charact.
 		strPrefix = " " + strPrefix;
 
-		while (!prefixStack.empty())
+		while (!stack.empty())
 		{
-			std::string & strLastPrefix = prefixStack.top();
+			std::string & strLastPrefix = stack.top().first;
 			int comparseRes = PrefixCompare(strPrefix, strLastPrefix);
 
 			//it is child of last object
 			if (comparseRes > 0) break;
 
-			prefixStack.pop();
-			treeStack.pop();
+			stack.pop();
 		}
 
-		SentenceTree * lastTree = treeStack.top();
+		SentenceTree * lastTree = stack.top().second;
 		SentenceTree & nextTree = lastTree->AddChild(strCmd);
 
-		treeStack.push(&nextTree);
-		prefixStack.push(strPrefix);
-
+		stack.push(ParseStackItem(strPrefix, &nextTree));
 	}
 }
 

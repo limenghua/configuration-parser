@@ -15,6 +15,7 @@ cisco format configure file parse into json format
 #项目基本功能：Configure转json格式，example:<br>
 ##configure file:<br>
 
+```python
 ! Info via SNMP: sysoid=1.3.6.1.4.1.9.1.1,vendor=Cisco,model=ciscoGatewayServer,hostname=ACL_R2
 
 version 15.2
@@ -64,6 +65,7 @@ interface Serial1/3
  shutdown
  serial restart-delay 0
 !
+```
 
 ##解析后的json文件：<br>
 ```javascript

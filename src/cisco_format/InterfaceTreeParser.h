@@ -32,6 +32,8 @@ public:
 		AddSubParser(new SimpleKeyValueTreeParser("security-level"));
 		AddSubParser(new SimpleKeyValueTreeParser("nameif"));
 		AddSubParser(new SimpleKeyValueTreeParser("management-only","true"));
+		AddSubParser(new SimpleKeyValueTreeParser("encapsulation"));
+		AddSubParser(new SimpleKeyValueTreeParser("shutdown", "true"));
 	}
 
 	~InterfaceTreeParser()

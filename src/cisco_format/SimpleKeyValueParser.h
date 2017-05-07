@@ -14,7 +14,7 @@
 #pragma once
 
 #include <json/value.h>
-#include "SentenceTree.h"
+#include "ConfigureParser/SentenceTree.h"
 #include "CompoundTreeParser.h"
 #include "ParserUtil.h"
 

@@ -14,9 +14,11 @@
 
 #include "ParserUtil.h"
 
+static const char * SPACES_CHARS = " \t\n\r";
+
 void SplitPrefixSpaces(const std::string & content, std::string & prefix, std::string & cmd)
 {
-	const char * SPACES_CHARS = " \t";
+
 
 	size_t pos = content.find_first_not_of(SPACES_CHARS);
 
@@ -59,10 +61,10 @@ std::string Trim(const std::string & str)
 {
 	if (str.empty())return str;
 
-	size_t startPos = str.find_first_not_of(" \t");
+	size_t startPos = str.find_first_not_of(SPACES_CHARS);
 	if (startPos == str.npos)return "";
 
-	size_t endPos = str.find_last_not_of(" \t");
+	size_t endPos = str.find_last_not_of(SPACES_CHARS);
 	if (endPos == str.npos)return "";
 
 
@@ -71,7 +73,7 @@ std::string Trim(const std::string & str)
 
 void SplitWords(const std::string & str, std::vector<std::string> & words)
 {
-	const std::string regularExp = " \t\n\r";
+	const std::string regularExp = SPACES_CHARS;
 
 	std::string input = Trim(str);
 	int startPos = 0;

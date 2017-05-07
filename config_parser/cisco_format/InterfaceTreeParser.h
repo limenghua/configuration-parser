@@ -10,7 +10,12 @@
  *  日期: 5/2/2017
  *  说明: 解析configure中interface数据段
  *	Example：
- * *	! *	interface Serial1/1 *		ip address 158.4.255.66 255.255.255.252 *		serial restart-delay 0 *	!
+ *
+ *	!
+ *	interface Serial1/1
+ *		ip address 158.4.255.66 255.255.255.252
+ *		serial restart-delay 0
+ *	!
  ******************************************************************/
 #pragma once
 

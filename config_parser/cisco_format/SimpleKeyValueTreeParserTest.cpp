@@ -42,13 +42,3 @@ TEST(SimpleKeyValueTreeParserTest, ManagementOnly)
 	EXPECT_EQ(root["management-only"].asString(), "true");
 }
 
-void ToDie()
-{
-	int * p = nullptr;
-	*p = 0;
-}
-
-TEST(DeathTest, ToDie)
-{
-	ASSERT_DEATH(ToDie(), "");
-}

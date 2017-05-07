@@ -66,6 +66,18 @@
     <ClCompile Include="cisco_format\SentenceTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="cisco_format\TransformerTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="cisco_format\InterfaceTransformerTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="cisco_format\RootTransformerTest.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="cisco_format\Transformer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cisco_format\SentenceTree.h">
@@ -90,6 +102,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="cisco_format\RootTreeParser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cisco_format\Transformer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cisco_format\InterfaceTransformer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cisco_format\TestUtil.h">
+      <Filter>test</Filter>
+    </ClInclude>
+    <ClInclude Include="cisco_format\RootTransformer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

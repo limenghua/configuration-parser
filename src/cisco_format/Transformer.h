@@ -2,21 +2,22 @@
 *  Copyright(c) 2010-2017 Netbrain
 *  All rights reserved.
 *
-*  ÎÄ¼şÃû³Æ: Transformer.h
-*  ¼òÒªÃèÊö:
+*  æ–‡ä»¶åç§°: Transformer.h
+*  ç®€è¦æè¿°:
 *
-*  µ±Ç°°æ±¾:
-*  ×÷Õß: limenghua
-*  ÈÕÆÚ: 2017/05/07
-*  ËµÃ÷:
+*  å½“å‰ç‰ˆæœ¬:
+*  ä½œè€…: limenghua
+*  æ—¥æœŸ: 2017/05/07
+*  è¯´æ˜:
 *
 ******************************************************************/
 #pragma once
 
 #include <json/value.h>
+#include <map>
 
 /************************************************************************/
-/* json ¸ñÊ½µÄ±ä»»
+/* json æ ¼å¼çš„å˜æ¢
  * example:
  *	json input :
  *	{
@@ -56,6 +57,10 @@ public:
 
 	virtual ITransformerPtr GetSubTransformer(const std::string & key)
 	{
+		return GetDefualtTransformer();
+	}
+	virtual ITransformerPtr GetDefualtTransformer()
+	{
 		return this;
 	}
 };
@@ -69,4 +74,37 @@ public:
 		root["childs"].append(input);
 		return root;
 	}
+};
+
+class CompoundTransformer :public DefualtTransformer
+{
+public:
+	virtual ~CompoundTransformer()override
+	{
+		for (auto & item : _subTransformers)
+		{
+			delete item.second;
+		}
+		_subTransformers.clear();
+	}
+	void AddSubTransformer(const std::string & strKey, ITransformerPtr subTransformer)
+	{
+		_subTransformers[strKey] = subTransformer;
+	}
+
+	virtual ITransformerPtr GetSubTransformer(const std::string & key)override
+	{
+		auto it = _subTransformers.find(key);
+		if (it != _subTransformers.end())
+		{ 
+			return it->second;
+		}
+		else
+		{
+			return DefualtTransformer::GetSubTransformer(key);
+		}
+	}
+
+private:
+	std::map<std::string, ITransformerPtr> _subTransformers;
 };

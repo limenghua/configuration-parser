@@ -2,13 +2,13 @@
 *  Copyright(c) 2010-2017 Netbrain
 *  All rights reserved.
 *
-*  ÎÄ¼şÃû³Æ: RootTransformer.h
-*  ¼òÒªÃèÊö:
+*  æ–‡ä»¶åç§°: RootTransformer.h
+*  ç®€è¦æè¿°:
 *
-*  µ±Ç°°æ±¾:
-*  ×÷Õß: limenghua
-*  ÈÕÆÚ: 2017/05/07
-*  ËµÃ÷:
+*  å½“å‰ç‰ˆæœ¬:
+*  ä½œè€…: limenghua
+*  æ—¥æœŸ: 2017/05/07
+*  è¯´æ˜:
 *
 ******************************************************************/
 #pragma once
@@ -18,34 +18,13 @@
 #include <map>
 
 
-class RootTransformer :public DefualtTransformer
+class RootTransformer :public CompoundTransformer
 {
 public:
 	RootTransformer()
 	{
-		_subTransforms["origin"] = new OriginTransformer();
-		_subTransforms["interface"] = new InterfaceTransformer();
-	}
-	virtual ~RootTransformer()override
-	{
-		for (auto & item : _subTransforms)
-		{
-			delete item.second;
-		}
-		_subTransforms.clear();
-	}
-
-	virtual ITransformerPtr GetSubTransformer(const std::string & key)override
-	{
-		auto it = _subTransforms.find(key);
-		if (it != _subTransforms.end())
-		{
-			return it->second;
-		}
-		else
-		{
-			return & _subTransformsDefualt;
-		}
+		AddSubTransformer("origin", new OriginTransformer());
+		AddSubTransformer("interface", new InterfaceTransformer());
 	}
 
 	virtual Json::Value TransformSelf(const Json::Value & input)override
@@ -53,7 +32,11 @@ public:
 		return Json::Value();
 	}
 
+	virtual ITransformerPtr GetDefualtTransformer()override
+	{
+		return &_subTransformsDefualt;
+	}
+
 private:
-	std::map<std::string, ITransformerPtr> _subTransforms;
 	DefualtTransformer _subTransformsDefualt;
 };

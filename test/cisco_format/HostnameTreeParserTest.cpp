@@ -11,19 +11,13 @@ TEST(HostnameTreeParserTest, HostnameCommandShouldParseHostname)
 
 	EXPECT_FALSE(root.isNull());
 
-	EXPECT_FALSE(root["key"].isNull());
-	EXPECT_TRUE(root["key"].isString());
 	EXPECT_EQ(root["key"].asString(), "hostname");
-
-	EXPECT_FALSE(root["hostname"].isNull());
-	EXPECT_TRUE(root["hostname"].isString());
 	EXPECT_EQ(root["hostname"].asString(), "example");
 }
 
 TEST(HostnameTreeParserTest, NoHostnameCommandShouldThrow)
 {
 	SentenceTree tree("not a host example");
-
 	EXPECT_THROW(hostNameParser.Parse(tree), std::exception);
 }
 
@@ -43,26 +37,14 @@ TEST(HostnameTreeParserTest, OnlyHasEmptyHostname)
 
 	Json::Value root = hostNameParser.Parse(tree);
 
-	EXPECT_FALSE(root.isNull());
 
-	EXPECT_FALSE(root["key"].isNull());
-	EXPECT_TRUE(root["key"].isString());
 	EXPECT_EQ(root["key"].asString(), "hostname");
-
-	EXPECT_FALSE(root["hostname"].isNull());
-	EXPECT_TRUE(root["hostname"].isString());
 	EXPECT_EQ(root["hostname"].asString(), "");
 
 	SentenceTree tree2("hostname  ");
 	root = hostNameParser.Parse(tree2);
-	EXPECT_FALSE(root.isNull());
 
-	EXPECT_FALSE(root["key"].isNull());
-	EXPECT_TRUE(root["key"].isString());
 	EXPECT_EQ(root["key"].asString(), "hostname");
-
-	EXPECT_FALSE(root["hostname"].isNull());
-	EXPECT_TRUE(root["hostname"].isString());
 	EXPECT_EQ(root["hostname"].asString(), "");
 }
 

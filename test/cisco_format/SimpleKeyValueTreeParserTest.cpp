@@ -10,15 +10,8 @@ TEST(SimpleKeyValueTreeParserTest, VersionParser)
 	SimpleKeyValueTreeParser versionParser("version");
 	SentenceTree tree("version 15.2");
 	Json::Value root = versionParser.Parse(tree);
-
-	EXPECT_FALSE(root.isNull());
-
-	EXPECT_FALSE(root["key"].isNull());
-	EXPECT_TRUE(root["key"].isString());
+	
 	EXPECT_EQ(root["key"].asString(), "version");
-
-	EXPECT_FALSE(root["version"].isNull());
-	EXPECT_TRUE(root["version"].isString());
 	EXPECT_EQ(root["version"].asString(), "15.2");
 }
 

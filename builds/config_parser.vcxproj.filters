@@ -57,6 +57,9 @@
     <ClInclude Include="..\include\ConfigureParser\SentenceTree.h">
       <Filter>ConfigureParser</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\cisco_format\PrefixMatcher.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cisco_format\ParserUtil.cpp">

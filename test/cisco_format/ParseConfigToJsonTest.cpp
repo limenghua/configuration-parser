@@ -38,7 +38,8 @@ TEST(ParseConfigToJsonTest, ComplexConfigure)
 		R"(
 !
 version 15.0
-hostname example!
+hostname example
+!
 interface Loopback0
  ip address 158.4.255.44 255.255.255.255
 )";
@@ -67,7 +68,8 @@ ACL_R2#show run
 version 15.2
 service timestamps debug datetime msec
 service timestamps log datetime msec
-no service password-encryption!
+no service password-encryption
+!
 hostname example
 !
 boot-start-marker

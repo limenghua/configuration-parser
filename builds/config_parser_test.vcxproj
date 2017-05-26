@@ -82,6 +82,7 @@
     <ClCompile Include="..\test\cisco_format\ParseConfigToSentenceTreeTest.cpp" />
     <ClCompile Include="..\test\cisco_format\PerformanceTest.cpp" />
     <ClCompile Include="..\test\cisco_format\PrefixCompareTest.cpp" />
+    <ClCompile Include="..\test\cisco_format\PrefixMatchTest.cpp" />
     <ClCompile Include="..\test\cisco_format\RootTransformerTest.cpp" />
     <ClCompile Include="..\test\cisco_format\RootTreeParserTest.cpp" />
     <ClCompile Include="..\test\cisco_format\SimpleKeyValueTreeParserTest.cpp" />

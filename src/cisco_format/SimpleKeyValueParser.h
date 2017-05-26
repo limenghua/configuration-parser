@@ -17,6 +17,7 @@
 #include "ConfigureParser/SentenceTree.h"
 #include "CompoundTreeParser.h"
 #include "ParserUtil.h"
+#include "PrefixMatcher.h"
 
 /** 
 * @brief 简单二分命令格式解析基础类
@@ -33,8 +34,8 @@ class SimpleKeyValueTreeParser :public CompoundTreeParser
 public:
 	SimpleKeyValueTreeParser(const std::string & strKey,const std::string & defaultValue="") :
 		_strKey(Trim(strKey)),
-		_defaultValue(defaultValue)
-
+		_defaultValue(defaultValue),
+		_matcher(strKey)
 	{
 	}
 
@@ -45,32 +46,25 @@ public:
 
 		size_t pos = strSentence.find(_strKey);
 
-		if (pos == strSentence.npos)
+		if (! _matcher.Match(strSentence))
 		{
 			throw std::exception("Sentence not has keywords");
 		}
-		else if (pos == 0)
+
+		if (_matcher.IsStartWithNo())
 		{
-			pos = strSentence.find_first_not_of(" \t", _strKey.size());
-			if (pos != strSentence.npos)
-			{
-				root[_strKey] = strSentence.substr(pos);
-			}
-			else
+			root[_strKey] = Json::Value::null;
+		}
+		else 
+		{
+			std::string strValue = _matcher.GetSpared();
+			if (strValue.empty())
 			{
 				root[_strKey] = _defaultValue;
 			}
-		}
-		else
-		{
-			std::string strPrefix = strSentence.substr(0, pos);
-			if (Trim(strPrefix) == "no")
-			{
-				root[_strKey] = Json::Value::null;
-			}
 			else
 			{
-				throw std::exception("Sentence not start with keywords or 'no'");
+				root[_strKey] = strValue;
 			}
 		}
 
@@ -79,18 +73,12 @@ public:
 
 	int ScoreMatchSentence(const std::string & strSentence)
 	{
-		size_t pos = strSentence.find(_strKey);
-		if (pos == 0)return _strKey.size();
-
-		if (pos == strSentence.npos)return -1;
-
-		std::string strPrefix = strSentence.substr(0, pos);
-		if (Trim(strPrefix) == "no")return _strKey.size() + 3;
-		
+		if (_matcher.Match(strSentence))return _strKey.size();
 		return -1;
 	}
 private:
 	const std::string _strKey;
 	const std::string _defaultValue;
+	PrefixMatcher _matcher;
 };
 

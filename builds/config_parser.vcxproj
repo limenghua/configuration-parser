@@ -94,6 +94,7 @@
     <ClInclude Include="..\src\cisco_format\InterfaceTransformer.h" />
     <ClInclude Include="..\src\cisco_format\InterfaceTreeParser.h" />
     <ClInclude Include="..\src\cisco_format\ParserUtil.h" />
+    <ClInclude Include="..\src\cisco_format\PrefixMatcher.h" />
     <ClInclude Include="..\src\cisco_format\RootTransformer.h" />
     <ClInclude Include="..\src\cisco_format\RootTreeParser.h" />
     <ClInclude Include="..\src\cisco_format\SimpleKeyValueParser.h" />

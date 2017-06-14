@@ -9,7 +9,7 @@ cisco format configure file parse into json format
 	（3）解析分步完成，每次完成一小步的转换，要求转换需求简单，明确，清晰。<br>
 		 现主要由三步组成：1.将configure file解析为语句树，通过缩进来确定树之间的父子关系；2.分别对每一个子树的内容进行解析，生成解析后的json的树结构；3.调整解析后的json格式，根据需要合并父子节点。<br>
 		 
-##2.尝试进行测试驱动开发，<br><br><br>
+##2.尝试实践测试驱动开发，<br><br><br>
 
 
 #项目基本功能：Configure转json格式，example:<br>

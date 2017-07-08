@@ -121,16 +121,10 @@ void ParseConfigToJson(std::istream & in, std::ostream & out)
 
 void ParseConfigToJson(const std::string & strContent, std::string & strOutput)
 {
-	SentenceTree  tree;
-	ParseConfigToSentenceTree(strContent, tree);
+	std::stringstream sin(strContent);
+	std::stringstream sout;
+	ParseConfigToJson(sin, sout);
+	strOutput = sout.str();
 
-	RootTreeParser parser;
-	Json::Value root = parser.Parse(tree);
-
-	RootTransformer transformer;
-	root = transformer.Transform(root);
-
-	Json::FastWriter writer;
-	strOutput = writer.write(root);
-
+	return;
 }

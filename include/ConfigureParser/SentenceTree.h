@@ -94,6 +94,7 @@ public:
 		return _childs[index];
 	}
 
+private:
 	std::string _sentence;
 	ChildsCollection _childs;
 };

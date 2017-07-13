@@ -1,5 +1,5 @@
 /*******************************************************************
-*  Copyright(c) 2010-2017 Netbrain
+*  Copyright(c) 2010-2017 Nethead
 *  All rights reserved.
 *
 *  文件名称: RootTransformer.h

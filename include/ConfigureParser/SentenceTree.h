@@ -1,5 +1,5 @@
 /******************************************************************* 
- *  Copyright(c) 2010-2017 Netbrain
+ *  Copyright(c) 2010-2017 Nethead
  *  All rights reserved. 
  *   
  *  ÎÄ¼şÃû³Æ: SentenceTree.h
